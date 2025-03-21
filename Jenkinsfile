@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'This stage compiles and packages the application using a build automation tool like Maven or Gradle.'
                 echo 'Building the application...'
+                echo "hello"
             }
         }
 
