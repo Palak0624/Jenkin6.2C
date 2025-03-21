@@ -16,7 +16,7 @@ pipeline {
                         echo 'Running unit and integration tests...'
                         
                         // Simulate test execution
-                        sh 'echo "Running tests..."
+                        sh 'echo "Running tests..."'
 
                         echo 'Tests passed successfully.'
                         
