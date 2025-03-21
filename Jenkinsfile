@@ -16,29 +16,27 @@ pipeline {
                         echo 'Running unit and integration tests...'
                         
                         // Simulate test execution
-                        sh 'echo "Running tests..."'
+                        sh 'echo "Running tests..."
 
                         echo 'Tests passed successfully.'
                         
                         // Send email notification for test success
-                        mail subject: "Jenkins Pipeline: Tests Passed ✅",
+                        mail (subject: "Jenkins Pipeline: Tests Passed ✅",
                             body: """
                                 <p>All unit and integration tests passed successfully.</p>
                                 <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                             """,
-                            to: 'palak4832.be23@chitkara.edu.in',
-                            mimeType: 'text/html'
+                            to: 'palak4832.be23@chitkara.edu.in')
                     } catch (Exception e) {
                         echo 'Tests failed! Sending failure email...'
                         
                         // Send email notification for test failure
-                        mail subject: "Jenkins Pipeline: Tests Failed ❌",
+                        mail (subject: "Jenkins Pipeline: Tests Failed ❌",
                             body: """
                                 <p>Unit and integration tests failed. Please check the logs.</p>
                                 <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                             """,
-                            to: 'palak4832.be23@chitkara.edu.in',
-                            mimeType: 'text/html'
+                            to: 'palak4832.be23@chitkara.edu.in')
                         
                         error "Failing the build due to test failure."
                     }
@@ -81,14 +79,13 @@ pipeline {
         always {
             echo 'Sending final pipeline status notification...'
             
-            emailext subject: "Jenkins Pipeline Execution Status 📩",
+            mail (subject: "Jenkins Pipeline Execution Status 📩",
                 body: """
                     <p>The pipeline has completed execution.</p>
                     <p>Final Status: ${currentBuild.currentResult}</p>
                     <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """,
-                to: 'palak4832.be23@chitkara.edu.in',
-                mimeType: 'text/html'
+                to: 'palak4832.be23@chitkara.edu.in')
         }
     }
 }
