@@ -59,7 +59,7 @@ pipeline {
 
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying to staging environment...'
+                echo 'Deploying to staging environment.'
             }
         }
 
