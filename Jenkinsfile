@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        echo 'Running unit and integration tests...'
+                        echo 'Running unit and integration tests using JUnit ...'
                         
                         // Simulate test execution
                         echo 'echo "Running tests..."'
@@ -47,31 +47,31 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                echo 'Performing static code analysis...'
+                echo 'Performing static code analysis using SonarQube...'
             }
         }
 
         stage('Security Scan') {
             steps {
-                echo 'Performing security scan...'
+                echo 'Performing security scan using Trivy...'
             }
         }
 
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying to staging environment.'
+                echo 'Deploying to staging environment using Docker.'
             }
         }
 
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Running integration tests in staging environment...'
+                echo 'Running integration tests in staging environment using Postman ...'
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying application to production environment...'
+                echo 'Deploying application to production environment using AWS CodeDeploy...'
             }
         }
     }
